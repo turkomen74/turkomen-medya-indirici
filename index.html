@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="tr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
+    <title>TURKOMEN Medya İndirici</title>
+    
+    <link rel="icon" href="ikon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="ikon.ico" type="image/x-icon">
+
+    <!-- Social Media Embed Tags -->
+    <meta name="title" content="TURKOMEN - YouTube & TikTok HD Medya İndirici">
+    <meta name="description" content="Ücretsiz YouTube 4K Kapak Resmi ve TikTok Kalite Kayıpsız Profil Fotoğrafı İndirme Aracı.">
+    <meta name="theme-color" content="#2563eb">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome 6 Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Modern Typography: Plus Jakarta Sans -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            400: '#60a5fa',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            800: '#1e40af',
+                            900: '#1e3a8a',
+                        },
+                        tiktok: {
+                            cyan: '#25F4EE',
+                            pink: '#FE2C55'
+                        }
+                    },
+                    boxShadow: {
+                        'glow': '0 0 40px -10px rgba(37, 99, 235, 0.35)',
+                        'glow-tiktok': '0 0 40px -10px rgba(254, 44, 85, 0.35)',
+                        'glow-lg': '0 0 60px -15px rgba(37, 99, 235, 0.45)',
+                        'modern': '0 20px 50px -12px rgba(15, 23, 42, 0.08)',
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-8px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #f8fafc;
+            color: #0f172a;
+            overflow-x: hidden;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* Ultra Modern Mesh Background Pattern */
+        .bg-mesh {
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(37, 99, 235, 0.08) 0px, transparent 50%),
+                radial-gradient(at 100% 0%, rgba(254, 44, 85, 0.08) 0px, transparent 50%),
+                radial-gradient(at 50% 100%, rgba(219, 234, 254, 0.3) 0px, transparent 50%);
+        }
+
+        /* Glassmorphism Styles */
+        .ultra-glass {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+        }
+
+        .ultra-glass-card {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+
+        /* Custom Input Glow */
+        .input-glow-yt:focus-within {
+            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15), 0 10px 25px -5px rgba(37, 99, 235, 0.1);
+        }
+
+        .input-glow-tt:focus-within {
+            box-shadow: 0 0 0 4px rgba(254, 44, 85, 0.15), 0 10px 25px -5px rgba(254, 44, 85, 0.1);
+        }
+
+        /* Shake animation for errors */
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-6px); }
+            40%, 80% { transform: translateX(6px); }
+        }
+        .animate-shake {
+            animation: shake 0.4s ease-in-out;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col font-sans antialiased bg-mesh">
+
+    <header class="sticky top-0 z-50 ultra-glass border-b border-slate-200/80 shadow-sm transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            
+            <!-- Logo & Brand Title -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="relative w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-white border border-slate-200/80 shadow-sm flex items-center justify-center overflow-hidden transition-transform duration-300 group-hover:scale-105 shrink-0">
+                    <img 
+                        src="logo.png" 
+                        alt="TURKOMEN Logo" 
+                        class="w-full h-full object-cover"
+                        onerror="this.onerror=null; this.src='https://placehold.co/100x100/2563eb/ffffff?text=T';"
+                    >
+                </div>
+
+                <div class="flex flex-col">
+                    <div class="flex items-center gap-1.5">
+                        <span class="text-xl sm:text-2xl font-black tracking-tight text-blue-600 drop-shadow-sm">TURKOMEN</span>
+                        <span class="text-xs sm:text-sm font-extrabold tracking-tight text-slate-800 uppercase bg-slate-100 px-2 py-0.5 rounded-md border border-slate-200">Media</span>
+                    </div>
+                    <span class="text-[10px] sm:text-xs font-bold tracking-wide text-slate-600 hidden sm:block">YOUTUBE & TIKTOK HD DOWNLOADER</span>
+                </div>
+            </a>
+
+            <!-- Status Indicator -->
+            <div class="flex items-center gap-2">
+                <div id="statusBadge" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50/90 border border-blue-200/70 text-blue-700 text-xs font-bold shadow-sm transition-all">
+                    <span class="relative flex h-2 w-2">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-600"></span>
+                    </span>
+                    <span class="hidden sm:inline">Otomatik HD & 4K PNG Aktif</span>
+                    <span class="sm:hidden">4K/HD PNG</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-1 max-w-5xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 flex flex-col items-center">
+        
+        <!-- Hero Header -->
+        <div class="text-center max-w-3xl mb-6 sm:mb-8 animate-float">
+            <div id="heroBadge" class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-blue-500/10 via-blue-600/10 to-indigo-500/10 text-blue-700 text-xs sm:text-sm font-extrabold mb-4 border border-blue-200/60 shadow-sm backdrop-blur-sm">
+                <i class="fa-solid fa-sparkles text-blue-600"></i>
+                <span id="heroBadgeText">Sıfır Kalite Kaybı & Orijinal Çözünürlük</span>
+            </div>
+            
+            <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-tight sm:leading-tight">
+                <span id="heroTitleMain">YouTube & TikTok</span> Görsellerini <br class="hidden sm:inline"/>
+                <span id="heroTitleSub" class="bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-600 bg-clip-text text-transparent">Tam Kalitede (HD)</span> İndirin
+            </h1>
+
+            <p id="heroDescription" class="mt-4 text-sm sm:text-lg text-slate-600 font-medium max-w-2xl mx-auto leading-relaxed">
+                YouTube video kapaklarını, YouTube kanal profillerini veya TikTok profil fotoğraflarını yüksek çözünürlükte <span class="font-extrabold text-slate-900 bg-blue-100/60 px-1.5 py-0.5 rounded">.png</span> formatında kaydettirin.
+            </p>
+        </div>
+
+        <!-- Platform Switcher Tabs (3 Tabs) -->
+        <div class="w-full max-w-xl p-1.5 mb-6 ultra-glass-card rounded-2xl flex items-center justify-between gap-1 shadow-sm">
+            <button 
+                type="button" 
+                id="tabYtProfile" 
+                onclick="switchTab('yt-profile')"
+                class="flex-1 py-3 px-2 sm:px-4 rounded-xl text-xs sm:text-sm font-extrabold text-slate-600 hover:text-slate-900 transition-all flex items-center justify-center gap-1.5 cursor-pointer"
+            >
+                <i class="fa-brands fa-youtube text-base"></i>
+                <span>YouTube Profil</span>
+            </button>
+            <button 
+                type="button" 
+                id="tabYoutube" 
+                onclick="switchTab('youtube')"
+                class="flex-1 py-3 px-2 sm:px-4 rounded-xl text-xs sm:text-sm font-extrabold transition-all flex items-center justify-center gap-1.5 bg-blue-600 text-white shadow-md cursor-pointer"
+            >
+                <i class="fa-brands fa-youtube text-base"></i>
+                <span>YouTube Kapak</span>
+            </button>
+            <button 
+                type="button" 
+                id="tabTiktok" 
+                onclick="switchTab('tiktok')"
+                class="flex-1 py-3 px-2 sm:px-4 rounded-xl text-xs sm:text-sm font-extrabold text-slate-600 hover:text-slate-900 transition-all flex items-center justify-center gap-1.5 cursor-pointer"
+            >
+                <i class="fa-brands fa-tiktok text-base"></i>
+                <span>TikTok Profil</span>
+            </button>
+        </div>
+
+        <!-- Search & Input Card -->
+        <div id="searchCard" class="w-full max-w-3xl ultra-glass-card rounded-3xl p-3 sm:p-5 shadow-modern mb-8 transition-all input-glow-yt relative">
+            <form id="downloadForm" onsubmit="handleFormSubmit(event)" class="space-y-3">
+                <div class="relative flex flex-col sm:flex-row items-center gap-2.5">
+                    
+                    <!-- Text Field -->
+                    <div class="relative w-full">
+                        <div id="inputIconContainer" class="absolute inset-y-0 left-0 pl-4 sm:pl-5 flex items-center pointer-events-none text-red-500 transition-colors">
+                            <i id="inputIcon" class="fa-brands fa-youtube text-2xl sm:text-3xl"></i>
+                        </div>
+
+                        <input 
+                            type="text" 
+                            id="mediaUrlInput" 
+                            placeholder="YouTube video veya Shorts linkini buraya yapıştırın..." 
+                            class="w-full pl-12 sm:pl-16 pr-24 py-4 sm:py-5 bg-slate-50/90 border border-slate-200 rounded-2xl text-slate-900 placeholder-slate-400 focus:outline-none focus:bg-white focus:border-blue-500 transition-all text-sm sm:text-base font-semibold shadow-inner"
+                            autocomplete="off"
+                        >
+
+                        <!-- Paste Button inside input -->
+                        <button 
+                            type="button" 
+                            onclick="pasteClipboard()" 
+                            class="absolute right-3 top-1/2 -translate-y-1/2 px-3 py-2 text-xs font-bold bg-slate-200/80 hover:bg-slate-300 text-slate-700 rounded-xl transition-all flex items-center gap-1.5 hover:scale-105 active:scale-95 cursor-pointer"
+                            title="Panodan Yapıştır"
+                        >
+                            <i class="fa-regular fa-paste text-blue-600" id="pasteBtnIcon"></i>
+                            <span class="hidden sm:inline">Yapıştır</span>
+                        </button>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button 
+                        type="submit" 
+                        id="submitBtn"
+                        class="w-full sm:w-auto min-w-[170px] py-4 sm:py-5 px-7 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-extrabold rounded-2xl shadow-lg shadow-blue-600/30 hover:shadow-blue-600/40 transition-all transform active:scale-95 flex items-center justify-center gap-2.5 text-base shrink-0 cursor-pointer"
+                    >
+                        <i class="fa-solid fa-bolt text-lg"></i>
+                        <span>Resmi Getir</span>
+                    </button>
+                </div>
+            </form>
+
+            <!-- Dynamic Error Notification Container -->
+            <div id="errorMessage" class="hidden mt-4 p-4 bg-red-500/10 border border-red-500/30 rounded-2xl flex items-center gap-3.5 text-red-600 font-extrabold transition-all animate-shake">
+                <div class="w-10 h-10 rounded-xl bg-red-500 text-white flex items-center justify-center shrink-0 shadow-md">
+                    <i class="fa-solid fa-triangle-exclamation text-lg"></i>
+                </div>
+                <div class="flex-1">
+                    <p class="text-base sm:text-lg font-black tracking-wide" id="errorText">Video Bulunamadı!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Result / Preview Container -->
+        <div id="resultCard" class="hidden w-full max-w-3xl ultra-glass-card rounded-3xl p-5 sm:p-7 shadow-modern space-y-6 transition-all duration-500">
+            
+            <!-- Result Header Info -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-200/80 pb-4">
+                <div class="flex items-center gap-3">
+                    <span id="qualityTag" class="px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-700 text-xs font-black uppercase tracking-wider flex items-center gap-1.5">
+                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                        HD Orijinal Kalite Hazır
+                    </span>
+                    <span class="text-xs sm:text-sm font-bold text-slate-500" id="videoResolutionBadge">1920x1080 (HD)</span>
+                </div>
+
+                <button onclick="clearResult()" class="text-xs font-bold text-slate-400 hover:text-slate-600 flex items-center gap-1 self-end sm:self-auto transition-colors cursor-pointer">
+                    <i class="fa-solid fa-xmark text-sm"></i> Temizle
+                </button>
+            </div>
+
+            <!-- User Info (TikTok mode only) -->
+            <div id="tiktokUserInfo" class="hidden flex items-center gap-3 p-3 bg-slate-50 rounded-2xl border border-slate-200/60">
+                <div class="w-10 h-10 rounded-full bg-pink-100 text-pink-600 flex items-center justify-center font-bold text-lg">
+                    <i class="fa-brands fa-tiktok"></i>
+                </div>
+                <div>
+                    <h4 class="font-black text-slate-900 text-sm" id="tiktokDisplayUsername">@kullanici</h4>
+                    <p class="text-xs text-slate-500 font-medium">TikTok Profil Fotoğrafı (Sıfır Kalite Kaybı)</p>
+                </div>
+            </div>
+
+            <!-- Main Preview Display Container -->
+            <div id="previewWrapper" class="relative group rounded-2xl overflow-hidden bg-slate-950 border border-slate-200 aspect-video shadow-2xl flex items-center justify-center transition-all duration-300">
+                <!-- Skeleton Loader -->
+                <div id="imageLoader" class="absolute inset-0 bg-slate-900 animate-pulse flex flex-col items-center justify-center text-slate-400 gap-3">
+                    <i class="fa-solid fa-circle-notch fa-spin text-4xl text-blue-500" id="loaderSpinner"></i>
+                    <span class="text-xs font-bold tracking-wider uppercase text-slate-400" id="loaderText">Görsel İşleniyor...</span>
+                </div>
+
+                <!-- Preview Image -->
+                <img 
+                    id="thumbnailImage" 
+                    alt="Media Preview" 
+                    class="w-full h-full object-contain relative z-10 opacity-0 transition-opacity duration-300"
+                >
+            </div>
+
+            <!-- Quick Download Actions -->
+            <div class="flex flex-col sm:flex-row gap-3 pt-2">
+                <!-- Direct PNG Download Button -->
+                <button 
+                    onclick="downloadAsPNG()" 
+                    id="downloadPngBtn"
+                    class="flex-1 py-4 sm:py-4.5 px-6 bg-blue-600 hover:bg-blue-700 text-white font-black rounded-2xl shadow-xl shadow-blue-600/30 hover:shadow-blue-600/40 transition-all flex items-center justify-center gap-3 text-base sm:text-lg cursor-pointer transform active:scale-98"
+                >
+                    <i class="fa-solid fa-circle-down text-xl"></i>
+                    <span id="downloadBtnText">.PNG Olarak İndir (Tam Kalite)</span>
+                </button>
+
+                <!-- Open original in new tab -->
+                <a 
+                    id="openTabBtn" 
+                    href="#" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    class="py-4 px-5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-2xl transition-all flex items-center justify-center gap-2 text-sm border border-slate-200/80 shrink-0"
+                >
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    <span class="hidden sm:inline">Yeni Sekmede Aç</span>
+                </a>
+            </div>
+
+            <!-- Footnote Info -->
+            <div class="flex items-center justify-center gap-2 text-xs font-semibold text-slate-500 text-center">
+                <i class="fa-solid fa-shield-check text-emerald-500 text-sm"></i>
+                <span id="downloadFootnote">İnen dosya otomatik olarak saf <strong>.png</strong> formatında cihazınıza kaydedilir.</span>
+            </div>
+        </div>
+
+        <!-- Feature Highlights Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 w-full max-w-3xl mt-8">
+            
+            <div class="p-5 ultra-glass-card rounded-2xl shadow-sm flex items-center sm:flex-col sm:text-center gap-4 transition-transform hover:-translate-y-1">
+                <div class="w-12 h-12 rounded-2xl bg-blue-500/10 text-blue-600 border border-blue-200/50 flex items-center justify-center text-xl shrink-0">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                </div>
+                <div>
+                    <h3 class="font-extrabold text-slate-900 text-base">Otomatik Kalite Tespiti</h3>
+                    <p class="text-xs text-slate-500 mt-1 font-medium">Manuel seçim gerekmez, sistem sunucudan doğrudan en yüksek çözünürlükü çekip işler.</p>
+                </div>
+            </div>
+
+            <div class="p-5 ultra-glass-card rounded-2xl shadow-sm flex items-center sm:flex-col sm:text-center gap-4 transition-transform hover:-translate-y-1">
+                <div class="w-12 h-12 rounded-2xl bg-blue-500/10 text-blue-600 border border-blue-200/50 flex items-center justify-center text-xl shrink-0">
+                    <i class="fa-solid fa-file-image text-blue-600"></i>
+                </div>
+                <div>
+                    <h3 class="font-extrabold text-slate-900 text-base">Saf .PNG Dönüştürücü</h3>
+                    <p class="text-xs text-slate-500 mt-1 font-medium">Görsel kalitesini bozmadan istemci tarafında tuvale çizer ve doğrudan kaydeder.</p>
+                </div>
+            </div>
+
+            <div class="p-5 ultra-glass-card rounded-2xl shadow-sm flex items-center sm:flex-col sm:text-center gap-4 transition-transform hover:-translate-y-1">
+                <div class="w-12 h-12 rounded-2xl bg-blue-500/10 text-blue-600 border border-blue-200/50 flex items-center justify-center text-xl shrink-0">
+                    <i class="fa-solid fa-mobile-screen-button"></i>
+                </div>
+                <div>
+                    <h3 class="font-extrabold text-slate-900 text-base">%100 Mobil & Hızlı</h3>
+                    <p class="text-xs text-slate-500 mt-1 font-medium">Telefon, tablet ve bilgisayarlarda yüksek hızlı, reklamsız ve kesintisiz deneyim.</p>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-auto border-t border-slate-200/80 ultra-glass py-6 sm:py-8">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <div class="flex items-center justify-center gap-2 mb-2">
+                <span class="text-lg font-black text-blue-600">TURKOMEN</span>
+                <span class="text-xs font-bold text-slate-700 uppercase tracking-widest">MEDIA DOWNLOADER</span>
+            </div>
+            <p class="text-xs font-semibold text-slate-500">
+                &copy; 2026 TURKOMEN. Tüm hakları saklıdır. YouTube & TikTok Orijinal Kalite İndirici.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Hidden Canvas Element for Image Format Conversion -->
+    <canvas id="conversionCanvas" class="hidden"></canvas>
+
+    <script>
+        // State Management Variables
+        let activePlatform = 'youtube'; // 'youtube', 'yt-profile', or 'tiktok'
+        let currentVideoId = '';
+        let currentYtUser = '';
+        let currentTiktokUser = '';
+        let currentLoadedImageUrl = '';
+        
+        const youtubeQualityList = ['maxres', 'sd', 'hq', 'mq'];
+        let currentQualityIndex = 0;
+
+        /**
+         * Switch active tab between YouTube Kapak, YouTube Profil, and TikTok Profil
+         */
+        function switchTab(platform) {
+            activePlatform = platform;
+            
+            const tabYtProf = document.getElementById('tabYtProfile');
+            const tabYt = document.getElementById('tabYoutube');
+            const tabTt = document.getElementById('tabTiktok');
+            
+            const searchCard = document.getElementById('searchCard');
+            const inputIcon = document.getElementById('inputIcon');
+            const inputIconContainer = document.getElementById('inputIconContainer');
+            const mediaInput = document.getElementById('mediaUrlInput');
+            const submitBtn = document.getElementById('submitBtn');
+            const statusBadge = document.getElementById('statusBadge');
+            
+            // Hero updates
+            const heroBadgeText = document.getElementById('heroBadgeText');
+            const heroTitleMain = document.getElementById('heroTitleMain');
+            const heroTitleSub = document.getElementById('heroTitleSub');
+            const heroDescription = document.getElementById('heroDescription');
+            
+            clearResult();
+            document.getElementById('errorMessage').classList.add('hidden');
+
+            // Reset tab styles
+            const defaultTabClass = "flex-1 py-3 px-2 sm:px-4 rounded-xl text-xs sm:text-sm font-extrabold text-slate-600 hover:text-slate-900 transition-all flex items-center justify-center gap-1.5 cursor-pointer";
+            tabYtProf.className = defaultTabClass;
+            tabYt.className = defaultTabClass;
+            tabTt.className = defaultTabClass;
+
+            if (platform === 'yt-profile') {
+                tabYtProf.className = "flex-1 py-3 px-2 sm:px-4 rounded-xl text-xs sm:text-sm font-extrabold transition-all flex items-center justify-center gap-1.5 bg-red-600 text-white shadow-md cursor-pointer";
+                
+                searchCard.className = "w-full max-w-3xl ultra-glass-card rounded-3xl p-3 sm:p-5 shadow-modern mb-8 transition-all input-glow-yt relative";
+                inputIconContainer.className = "absolute inset-y-0 left-0 pl-4 sm:pl-5 flex items-center pointer-events-none text-red-600 transition-colors";
+                inputIcon.className = "fa-brands fa-youtube text-2xl sm:text-3xl";
+                
+                mediaInput.placeholder = "@kullaniciadi veya youtube.com/@kullanici-adi linkini girin...";
+                
+                submitBtn.className = "w-full sm:w-auto min-w-[170px] py-4 sm:py-5 px-7 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-extrabold rounded-2xl shadow-lg shadow-red-600/30 hover:shadow-red-600/40 transition-all transform active:scale-95 flex items-center justify-center gap-2.5 text-base shrink-0 cursor-pointer";
+                
+                statusBadge.className = "inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-red-50/90 border border-red-200/70 text-red-700 text-xs font-bold shadow-sm transition-all";
+
+                heroBadgeText.textContent = "YouTube Kanal Profil Fotoğrafı İndirici";
+                heroTitleMain.textContent = "YouTube Kanal";
+                heroTitleSub.textContent = "Sıfır Kalite Kaybıyla";
+                heroTitleSub.className = "bg-gradient-to-r from-red-600 via-red-700 to-rose-600 bg-clip-text text-transparent";
+                heroDescription.innerHTML = 'YouTube kullanıcı adını (örn: <span class="font-bold text-slate-800">@kullanici</span>) veya kanal bağlantısını girin. Kanal profil fotoğrafını orijinal kalitede <span class="font-extrabold text-slate-900 bg-red-100/60 px-1.5 py-0.5 rounded">.png</span> olarak indirin.';
+
+            } else if (platform === 'youtube') {
+                tabYt.className = "flex-1 py-3 px-2 sm:px-4 rounded-xl text-xs sm:text-sm font-extrabold transition-all flex items-center justify-center gap-1.5 bg-blue-600 text-white shadow-md cursor-pointer";
+
+                searchCard.className = "w-full max-w-3xl ultra-glass-card rounded-3xl p-3 sm:p-5 shadow-modern mb-8 transition-all input-glow-yt relative";
+                inputIconContainer.className = "absolute inset-y-0 left-0 pl-4 sm:pl-5 flex items-center pointer-events-none text-blue-600 transition-colors";
+                inputIcon.className = "fa-brands fa-youtube text-2xl sm:text-3xl";
+                
+                mediaInput.placeholder = "YouTube video veya Shorts linkini buraya yapıştırın...";
+                
+                submitBtn.className = "w-full sm:w-auto min-w-[170px] py-4 sm:py-5 px-7 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-extrabold rounded-2xl shadow-lg shadow-blue-600/30 hover:shadow-blue-600/40 transition-all transform active:scale-95 flex items-center justify-center gap-2.5 text-base shrink-0 cursor-pointer";
+                
+                statusBadge.className = "inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50/90 border border-blue-200/70 text-blue-700 text-xs font-bold shadow-sm transition-all";
+
+                heroBadgeText.textContent = "En Yüksek 4K/HD YouTube Kapak Resim İndirici";
+                heroTitleMain.textContent = "YouTube Video";
+                heroTitleSub.textContent = "Ultra 4K Kalitede";
+                heroTitleSub.className = "bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-600 bg-clip-text text-transparent";
+                heroDescription.innerHTML = 'YouTube video veya Shorts bağlantısını yapıştırın. Sistem en yüksek kalitedeki görseli otomatik işlesin ve anında saf <span class="font-extrabold text-slate-900 bg-blue-100/60 px-1.5 py-0.5 rounded">.png</span> olarak cihazınıza kaydetsin.';
+                
+            } else {
+                tabTt.className = "flex-1 py-3 px-2 sm:px-4 rounded-xl text-xs sm:text-sm font-extrabold transition-all flex items-center justify-center gap-1.5 bg-slate-900 text-white shadow-md cursor-pointer";
+
+                searchCard.className = "w-full max-w-3xl ultra-glass-card rounded-3xl p-3 sm:p-5 shadow-modern mb-8 transition-all input-glow-tt relative";
+                inputIconContainer.className = "absolute inset-y-0 left-0 pl-4 sm:pl-5 flex items-center pointer-events-none text-slate-900 transition-colors";
+                inputIcon.className = "fa-brands fa-tiktok text-2xl sm:text-3xl";
+                
+                mediaInput.placeholder = "@kullaniciadi veya tiktok.com/@kullanici-adi linkini girin...";
+                
+                submitBtn.className = "w-full sm:w-auto min-w-[170px] py-4 sm:py-5 px-7 bg-gradient-to-r from-slate-900 via-pink-600 to-slate-900 hover:opacity-95 text-white font-extrabold rounded-2xl shadow-lg shadow-pink-500/20 transition-all transform active:scale-95 flex items-center justify-center gap-2.5 text-base shrink-0 cursor-pointer";
+                
+                statusBadge.className = "inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-pink-50/90 border border-pink-200/70 text-pink-600 text-xs font-bold shadow-sm transition-all";
+
+                heroBadgeText.textContent = "Sıfır Kalite Kaybı İle TikTok Profil İndirici";
+                heroTitleMain.textContent = "TikTok Profil";
+                heroTitleSub.textContent = "Sıfır Kalite Kaybıyla";
+                heroTitleSub.className = "bg-gradient-to-r from-pink-600 via-purple-600 to-slate-900 bg-clip-text text-transparent";
+                heroDescription.innerHTML = 'TikTok kullanıcı adını (örn: <span class="font-bold text-slate-800">@kullanici</span>) veya profil linkini yapıştırın. Orijinal kalitedeki profil fotoğrafını anında <span class="font-extrabold text-slate-900 bg-pink-100/60 px-1.5 py-0.5 rounded">.png</span> olarak indirin.';
+            }
+        }
+
+        /**
+         * Check if input text is a YouTube channel handle or channel link
+         */
+        function isYouTubeHandleOrChannel(input) {
+            if (!input) return false;
+            const str = input.trim();
+            if (str.startsWith('@')) return true;
+            if (str.includes('youtube.com/@') || str.includes('youtube.com/channel/') || str.includes('youtube.com/c/') || str.includes('youtube.com/user/')) return true;
+            return false;
+        }
+
+        /**
+         * YouTube Handle / Username Clean Extractor
+         */
+        function extractYouTubeUsername(input) {
+            if (!input) return null;
+            let raw = input.trim();
+            
+            const match = raw.match(/(?:https?:\/\/)?(?:www\.|m\.)?youtube\.com\/(?:@|c\/|channel\/|user\/)?@?([a-zA-Z0-9_\.-]+)/i);
+            if (match && match[1]) {
+                return match[1].replace(/^@/, '');
+            }
+            
+            let clean = raw.replace(/^@/, '').split('/')[0].split('?')[0].trim();
+            if (clean.length > 0 && !clean.includes('http') && !clean.includes(' ')) {
+                return clean;
+            }
+            return null;
+        }
+
+        /**
+         * YouTube Video ID Extractor
+         */
+        function extractYouTubeId(url) {
+            if (!url) return null;
+            url = url.trim();
+            const youtubeRegex = /^(?:https?:\/\/)?(?:www\.|m\.|music\.)?(?:youtube\.com\/(?:watch\?v=|embed\/|v\/|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
+            const match = url.match(youtubeRegex);
+            return (match && match[1]) ? match[1] : null;
+        }
+
+        /**
+         * TikTok Username Clean Extractor
+         */
+        function extractTikTokUsername(input) {
+            if (!input) return null;
+            let raw = input.trim();
+            
+            const urlRegex = /(?:https?:\/\/)?(?:www\.|m\.)?tiktok\.com\/@([a-zA-Z0-9_\.-]+)/i;
+            const match = raw.match(urlRegex);
+            
+            if (match && match[1]) {
+                return match[1];
+            }
+            
+            let clean = raw.replace(/^@/, '').split('/')[0].split('?')[0].trim();
+            if (clean.length > 0 && !clean.includes('http') && !clean.includes(' ')) {
+                return clean;
+            }
+            
+            return null;
+        }
+
+        /**
+         * Handling form submission logic with Auto-Switching
+         */
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const input = document.getElementById('mediaUrlInput').value.trim();
+            const errorBox = document.getElementById('errorMessage');
+
+            errorBox.classList.add('hidden');
+
+            if (!input) {
+                showError('Lütfen geçerli bir bağlantı veya kullanıcı adı girin.');
+                return;
+            }
+
+            // AUTO-SWITCH FEATURE:
+            // 1. If user is in YouTube Kapak tab and pastes a handle like @kullanici -> Switch to YouTube Profil tab!
+            if (activePlatform === 'youtube' && isYouTubeHandleOrChannel(input)) {
+                switchTab('yt-profile');
+                document.getElementById('mediaUrlInput').value = input;
+                processYouTubeProfileDownload(input);
+                return;
+            }
+
+            // 2. If user inputs YouTube video link while on Profil or TikTok tab -> Switch to YouTube Kapak tab!
+            if ((input.includes('youtube.com/watch') || input.includes('youtu.be/') || input.includes('youtube.com/shorts/'))) {
+                if (activePlatform !== 'youtube') {
+                    switchTab('youtube');
+                    document.getElementById('mediaUrlInput').value = input;
+                }
+                processYouTubeDownload(input);
+                return;
+            }
+
+            // 3. If user inputs TikTok link -> Switch to TikTok tab!
+            if (input.includes('tiktok.com')) {
+                if (activePlatform !== 'tiktok') {
+                    switchTab('tiktok');
+                    document.getElementById('mediaUrlInput').value = input;
+                }
+                processTikTokDownload(input);
+                return;
+            }
+
+            // Dispatch to active platform logic
+            if (activePlatform === 'youtube') {
+                processYouTubeDownload(input);
+            } else if (activePlatform === 'yt-profile') {
+                processYouTubeProfileDownload(input);
+            } else {
+                processTikTokDownload(input);
+            }
+        }
+
+        /**
+         * Show dynamic error notification
+         */
+        function showError(message) {
+            const errorBox = document.getElementById('errorMessage');
+            const errorText = document.getElementById('errorText');
+            const resultCard = document.getElementById('resultCard');
+
+            errorText.textContent = message || 'Video Bulunamadı!';
+            errorBox.classList.remove('hidden');
+            resultCard.classList.add('hidden');
+        }
+
+        /**
+         * Processing YouTube thumbnail fetcher...
+         */
+        function processYouTubeDownload(input) {
+            const videoId = extractYouTubeId(input);
+            if (!videoId) {
+                showError('Video Bulunamadı!');
+                return;
+            }
+
+            currentVideoId = videoId;
+            currentQualityIndex = 0; // Start at max resolution
+            displayYouTubeThumbnail();
+        }
+
+        function getYouTubeThumbnailUrl(videoId, qualityKey) {
+            return `https://i.ytimg.com/vi/${videoId}/${qualityKey}default.jpg`;
+        }
+
+        function displayYouTubeThumbnail() {
+            const img = document.getElementById('thumbnailImage');
+            const loader = document.getElementById('imageLoader');
+            const openTabBtn = document.getElementById('openTabBtn');
+            const previewWrapper = document.getElementById('previewWrapper');
+            const tiktokInfo = document.getElementById('tiktokUserInfo');
+            const downloadBtn = document.getElementById('downloadPngBtn');
+
+            tiktokInfo.classList.add('hidden');
+            previewWrapper.className = "relative group rounded-2xl overflow-hidden bg-slate-950 border border-slate-200 aspect-video shadow-2xl flex items-center justify-center transition-all duration-300";
+            
+            downloadBtn.className = "flex-1 py-4 sm:py-4.5 px-6 bg-blue-600 hover:bg-blue-700 text-white font-black rounded-2xl shadow-xl shadow-blue-600/30 hover:shadow-blue-600/40 transition-all flex items-center justify-center gap-3 text-base sm:text-lg cursor-pointer transform active:scale-98";
+
+            loader.classList.remove('hidden');
+            img.classList.add('opacity-0');
+
+            const qualityKey = youtubeQualityList[currentQualityIndex];
+            const url = getYouTubeThumbnailUrl(currentVideoId, qualityKey);
+            
+            img.onload = onYouTubeImageLoaded;
+            img.onerror = onYouTubeImageError;
+            img.src = url;
+            currentLoadedImageUrl = url;
+            openTabBtn.href = url;
+        }
+
+        function onYouTubeImageLoaded() {
+            const loader = document.getElementById('imageLoader');
+            const img = document.getElementById('thumbnailImage');
+            const resBadge = document.getElementById('videoResolutionBadge');
+            const resultCard = document.getElementById('resultCard');
+            const qualityTag = document.getElementById('qualityTag');
+
+            if (img.naturalWidth <= 120) {
+                if (currentQualityIndex < youtubeQualityList.length - 1) {
+                    currentQualityIndex++;
+                    displayYouTubeThumbnail();
+                    return;
+                } else {
+                    resultCard.classList.add('hidden');
+                    showError('Video Bulunamadı!');
+                    return;
+                }
+            }
+
+            loader.classList.add('hidden');
+            img.classList.remove('opacity-0');
+            resultCard.classList.remove('hidden');
+
+            qualityTag.className = "px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-700 text-xs font-black uppercase tracking-wider flex items-center gap-1.5";
+            qualityTag.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> 4K Ultra HD Hazır`;
+
+            if (img.naturalWidth && img.naturalHeight) {
+                resBadge.textContent = `${img.naturalWidth}x${img.naturalHeight} (${img.naturalWidth >= 1280 ? '4K / Ultra HD' : 'Yüksek Kalite'})`;
+            }
+
+            resultCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        function onYouTubeImageError() {
+            const resultCard = document.getElementById('resultCard');
+            if (currentQualityIndex < youtubeQualityList.length - 1) {
+                currentQualityIndex++;
+                displayYouTubeThumbnail();
+            } else {
+                resultCard.classList.add('hidden');
+                showError('Video Bulunamadı!');
+            }
+        }
+
+        /**
+         * STREAMING_CHUNK:Processing YouTube profile picture fetcher...
+         */
+        async function processYouTubeProfileDownload(input) {
+            const username = extractYouTubeUsername(input);
+            if (!username) {
+                showError('Kullanıcı Bulunamadı!');
+                return;
+            }
+
+            currentYtUser = username;
+            
+            const resultCard = document.getElementById('resultCard');
+            const img = document.getElementById('thumbnailImage');
+            const loader = document.getElementById('imageLoader');
+            const openTabBtn = document.getElementById('openTabBtn');
+            const previewWrapper = document.getElementById('previewWrapper');
+            const tiktokInfo = document.getElementById('tiktokUserInfo');
+            const tiktokUserText = document.getElementById('tiktokDisplayUsername');
+            const downloadBtn = document.getElementById('downloadPngBtn');
+            const qualityTag = document.getElementById('qualityTag');
+
+            previewWrapper.className = "relative group rounded-2xl overflow-hidden bg-slate-950 border border-slate-200 aspect-square max-w-sm mx-auto shadow-2xl flex items-center justify-center transition-all duration-300";
+            
+            downloadBtn.className = "flex-1 py-4 sm:py-4.5 px-6 bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-700 hover:to-rose-700 text-white font-black rounded-2xl shadow-xl shadow-red-600/30 transition-all flex items-center justify-center gap-3 text-base sm:text-lg cursor-pointer transform active:scale-98";
+
+            tiktokUserText.textContent = `@${username}`;
+            tiktokInfo.querySelector('p').textContent = 'YouTube Kanal Profil Fotoğrafı (Sıfır Kalite Kaybı)';
+            tiktokInfo.querySelector('i').className = 'fa-brands fa-youtube';
+            tiktokInfo.querySelector('.w-10').className = 'w-10 h-10 rounded-full bg-red-100 text-red-600 flex items-center justify-center font-bold text-lg';
+            tiktokInfo.classList.remove('hidden');
+
+            loader.classList.remove('hidden');
+            img.classList.add('opacity-0');
+
+            try {
+                let avatarUrl = `https://unavatar.io/youtube/@${username}`;
+
+                img.onload = () => {
+                    if (img.naturalWidth <= 16) {
+                        showError('Kullanıcı Bulunamadı!');
+                        return;
+                    }
+                    loader.classList.add('hidden');
+                    img.classList.remove('opacity-0');
+                    resultCard.classList.remove('hidden');
+
+                    qualityTag.className = "px-3 py-1 rounded-full bg-red-500/10 border border-red-500/30 text-red-700 text-xs font-black uppercase tracking-wider flex items-center gap-1.5";
+                    qualityTag.innerHTML = `<span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span> Tam Kalite YouTube Profil`;
+
+                    document.getElementById('videoResolutionBadge').textContent = `${img.naturalWidth || 800}x${img.naturalHeight || 800} (Orijinal HD)`;
+                    resultCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                };
+
+                img.onerror = () => {
+                    showError('Kullanıcı Bulunamadı!');
+                };
+
+                img.src = avatarUrl;
+                currentLoadedImageUrl = avatarUrl;
+                openTabBtn.href = avatarUrl;
+
+            } catch (err) {
+                showError('Kullanıcı Bulunamadı!');
+            }
+        }
+
+        /**
+         * STREAMING_CHUNK:Processing TikTok profile picture fetcher...
+         */
+        async function processTikTokDownload(input) {
+            const username = extractTikTokUsername(input);
+            if (!username) {
+                showError('Kullanıcı Bulunamadı!');
+                return;
+            }
+
+            currentTiktokUser = username;
+            
+            const resultCard = document.getElementById('resultCard');
+            const img = document.getElementById('thumbnailImage');
+            const loader = document.getElementById('imageLoader');
+            const openTabBtn = document.getElementById('openTabBtn');
+            const previewWrapper = document.getElementById('previewWrapper');
+            const tiktokInfo = document.getElementById('tiktokUserInfo');
+            const tiktokUserText = document.getElementById('tiktokDisplayUsername');
+            const downloadBtn = document.getElementById('downloadPngBtn');
+            const qualityTag = document.getElementById('qualityTag');
+
+            previewWrapper.className = "relative group rounded-2xl overflow-hidden bg-slate-950 border border-slate-200 aspect-square max-w-sm mx-auto shadow-2xl flex items-center justify-center transition-all duration-300";
+            
+            downloadBtn.className = "flex-1 py-4 sm:py-4.5 px-6 bg-gradient-to-r from-slate-900 via-pink-600 to-slate-900 hover:opacity-95 text-white font-black rounded-2xl shadow-xl shadow-pink-600/20 transition-all flex items-center justify-center gap-3 text-base sm:text-lg cursor-pointer transform active:scale-98";
+
+            tiktokUserText.textContent = `@${username}`;
+            tiktokInfo.querySelector('p').textContent = 'TikTok Profil Fotoğrafı (Sıfır Kalite Kaybı)';
+            tiktokInfo.querySelector('i').className = 'fa-brands fa-tiktok';
+            tiktokInfo.querySelector('.w-10').className = 'w-10 h-10 rounded-full bg-pink-100 text-pink-600 flex items-center justify-center font-bold text-lg';
+            tiktokInfo.classList.remove('hidden');
+
+            loader.classList.remove('hidden');
+            img.classList.add('opacity-0');
+
+            try {
+                let avatarUrl = `https://unavatar.io/tiktok/${username}`;
+
+                img.onload = () => {
+                    if (img.naturalWidth <= 16) {
+                        showError('Kullanıcı Bulunamadı!');
+                        return;
+                    }
+                    loader.classList.add('hidden');
+                    img.classList.remove('opacity-0');
+                    resultCard.classList.remove('hidden');
+
+                    qualityTag.className = "px-3 py-1 rounded-full bg-pink-500/10 border border-pink-500/30 text-pink-700 text-xs font-black uppercase tracking-wider flex items-center gap-1.5";
+                    qualityTag.innerHTML = `<span class="w-2 h-2 rounded-full bg-pink-500 animate-pulse"></span> Tam Kalite TikTok Profil`;
+
+                    document.getElementById('videoResolutionBadge').textContent = `${img.naturalWidth || 720}x${img.naturalHeight || 720} (Orijinal HD)`;
+                    resultCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                };
+
+                img.onerror = () => {
+                    showError('Kullanıcı Bulunamadı!');
+                };
+
+                img.src = avatarUrl;
+                currentLoadedImageUrl = avatarUrl;
+                openTabBtn.href = avatarUrl;
+
+            } catch (err) {
+                showError('Kullanıcı Bulunamadı!');
+            }
+        }
+
+        /**
+         * PNG converter and download logic
+         */
+        async function downloadAsPNG() {
+            if (!currentLoadedImageUrl) return;
+
+            const downloadBtn = document.getElementById('downloadPngBtn');
+            const originalContent = downloadBtn.innerHTML;
+
+            downloadBtn.disabled = true;
+            downloadBtn.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin text-xl"></i><span>PNG Dönüştürülüyor...</span>`;
+
+            let fileName = 'turkomen-media.png';
+            if (activePlatform === 'youtube') {
+                fileName = 'turkomen-yt-thumbnail.png';
+            } else if (activePlatform === 'yt-profile') {
+                fileName = `turkomen-yt-profile-${currentYtUser || 'channel'}.png`;
+            } else {
+                fileName = `turkomen-tiktok-${currentTiktokUser || 'profile'}.png`;
+            }
+
+            try {
+                const response = await fetch(currentLoadedImageUrl);
+                const blob = await response.blob();
+
+                const img = new Image();
+                const blobUrl = URL.createObjectURL(blob);
+
+                img.onload = () => {
+                    const canvas = document.getElementById('conversionCanvas');
+                    const ctx = canvas.getContext('2d');
+
+                    canvas.width = img.naturalWidth || img.width;
+                    canvas.height = img.naturalHeight || img.height;
+
+                    ctx.drawImage(img, 0, 0);
+
+                    canvas.toBlob((pngBlob) => {
+                        if (!pngBlob) {
+                            resetDownloadBtn();
+                            return;
+                        }
+
+                        const pngUrl = URL.createObjectURL(pngBlob);
+                        const a = document.createElement('a');
+                        a.href = pngUrl;
+                        a.download = fileName;
+                        
+                        document.body.appendChild(a);
+                        a.click();
+                        document.body.removeChild(a);
+
+                        URL.revokeObjectURL(pngUrl);
+                        URL.revokeObjectURL(blobUrl);
+
+                        resetDownloadBtn();
+                    }, 'image/png', 1.0);
+                };
+
+                img.onerror = () => {
+                    triggerDirectDownload(currentLoadedImageUrl, fileName);
+                    resetDownloadBtn();
+                };
+
+                img.src = blobUrl;
+
+            } catch (err) {
+                triggerDirectDownload(currentLoadedImageUrl, fileName);
+                resetDownloadBtn();
+            }
+
+            function resetDownloadBtn() {
+                downloadBtn.disabled = false;
+                downloadBtn.innerHTML = originalContent;
+            }
+        }
+
+        function triggerDirectDownload(url, filename) {
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            a.target = '_blank';
+            a.click();
+        }
+
+        /**
+         * Clipboard paste and UI reset helpers
+         */
+        async function pasteClipboard() {
+            try {
+                const text = await navigator.clipboard.readText();
+                if (text) {
+                    const input = document.getElementById('mediaUrlInput');
+                    input.value = text;
+                    document.getElementById('downloadForm').dispatchEvent(new Event('submit'));
+                }
+            } catch (err) {
+                console.log("Clipboard read permission restricted.");
+            }
+        }
+
+        function clearResult() {
+            document.getElementById('resultCard').classList.add('hidden');
+            document.getElementById('mediaUrlInput').value = '';
+            document.getElementById('errorMessage').classList.add('hidden');
+            currentVideoId = '';
+            currentYtUser = '';
+            currentTiktokUser = '';
+            currentLoadedImageUrl = '';
+            currentQualityIndex = 0;
+        }
+
+        // Global function exports for inline HTML events
+        window.switchTab = switchTab;
+        window.handleFormSubmit = handleFormSubmit;
+        window.downloadAsPNG = downloadAsPNG;
+        window.pasteClipboard = pasteClipboard;
+        window.clearResult = clearResult;
+    </script>
+</body>
+</html>
